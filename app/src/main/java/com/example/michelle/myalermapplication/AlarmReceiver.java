@@ -23,14 +23,20 @@ public class AlarmReceiver extends BroadcastReceiver  {
         Intent bootIntent = new Intent(context, SubActivity.class);
         PendingIntent contextIntent = PendingIntent.getActivity(context,0,bootIntent,0);
         Notification.Builder builder = new Notification.Builder(context);
-        builder.setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("時間ですよ〜起きて〜")
+        builder.setSmallIcon(R.drawable.bell)
+                .setContentTitle("アラーム設定時刻です。")
                 .setContentText(receivedIntent.getCharSequenceExtra("todo"))
                 .setWhen(System.currentTimeMillis())
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setContentIntent(contextIntent);
+        // 通知時の音・バイブ
+        builder.setDefaults(Notification.DEFAULT_SOUND
+                | Notification.DEFAULT_VIBRATE);
+        // タップするとキャンセル(消える)
+        builder.setAutoCancel(true);
+
 
         myNotification.notify(notificationId, builder.build());
     }
