@@ -18,10 +18,12 @@ public class AlarmReceiver extends BroadcastReceiver  {
     @Override
     public void onReceive(Context context, Intent receivedIntent) {
 
+        int bid = receivedIntent.getIntExtra("intentId",0);
+
         int notificationId = receivedIntent.getIntExtra("notificationId", 0);
         NotificationManager myNotification = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent bootIntent = new Intent(context, SubActivity.class);
-        PendingIntent contextIntent = PendingIntent.getActivity(context,0,bootIntent,0);
+        PendingIntent contextIntent = PendingIntent.getActivity(context,bid,bootIntent,0);
         Notification.Builder builder = new Notification.Builder(context);
         builder.setSmallIcon(R.drawable.bell)
                 .setContentTitle("アラーム設定時刻です。")
