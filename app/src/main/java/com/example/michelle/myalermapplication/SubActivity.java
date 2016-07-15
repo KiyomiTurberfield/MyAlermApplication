@@ -154,10 +154,16 @@ PendingIntentを使うと指定したタイミングでインテントを発行�
 
                 break;
             case R.id.cancel:
-                alarm.cancel(alarmIntent);
+                switch (id) {
+                    case 1:
+                        alarm.cancel(alarmIntent);
+                    case 2:
+                        alarm2.cancel(alarmIntent);
+                    case 3:
+                        alarm3.cancel(alarmIntent);
+                }
                 Toast.makeText(SubActivity.this, "通知をキャンセル！", Toast.LENGTH_SHORT).show();
                 break;
-
 
             }
         }
