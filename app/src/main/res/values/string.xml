@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <string name="app_name">目覚ましアプリ</string>
+    <string name="app_name">目覚ましアプリ</string>
     <string name ="todo">やること</string>
-<string name ="set">セット</string>
-<string name ="cancel">解除</string>
+    <string name ="set">セット</string>
+    <string name ="cancel">解除</string>
     <string name ="action_settings">設定</string>
 </resources>

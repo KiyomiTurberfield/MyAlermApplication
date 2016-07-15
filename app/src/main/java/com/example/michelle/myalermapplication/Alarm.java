@@ -8,31 +8,23 @@ import java.util.StringTokenizer;
  */
 public class Alarm{
 
-    String tittle = "アラーム";
-    int hour;
-    int min;
-    boolean vib = true;//初期設定はオン！
+    // 自クラスをインスタンスに持つ
+    private static Alarm alarm = null;
 
-    public void setTittle (String tittle){
-        this.tittle = tittle;
-    }
-    public String getTittle (){
-        return this.tittle;
-    }
+    // メンバ変数
+    private boolean vib = false;//初期設定はオフ！
 
-    public void setAHour(int hour){
-        this.hour =hour;
+    public static Alarm getInstance() {
+        if(alarm == null) {
+            // インスタンスがnullの場合のみ生成する
+            alarm = new Alarm();
+        }
+        return alarm;
     }
-    public int getAHour(){
-        return this.hour;
+    private Alarm() {
+
     }
 
-    public void setAMin(int min){
-        this.min = min;
-    }
-    public int getAMin() {
-        return this.min;
-    }
 
     public void setVib(boolean vib){
         this.vib = vib;

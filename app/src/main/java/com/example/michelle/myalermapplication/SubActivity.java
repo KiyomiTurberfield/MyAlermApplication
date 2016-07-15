@@ -37,6 +37,7 @@ public class SubActivity extends AppCompatActivity implements View.OnClickListen
 
     public int id;
 
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -47,19 +48,17 @@ public class SubActivity extends AppCompatActivity implements View.OnClickListen
         id = inte.getIntExtra("intentId", 0);
         System.out.println("受け取ったintentID:"+id);
 
-
-
+        /*
         if(id == 1){
             Alarm alarm1 = new Alarm();
         } else if(id == 2){
             Alarm alarm2 = new Alarm();
-        }
-        /*else if (id == 3){
+        } else if (id == 3){
             Alarm alarm3 = new Alarm();
         }*/
 
 
-        EditText edText = (EditText) findViewById(R.id.editText);
+        EditText edText = (EditText) findViewById(R.id.edText);
         mLayout = (RelativeLayout)findViewById(R.id.sublayout);
         //キーボード表示を制御するためのオブジェクト
         mInputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -67,8 +66,18 @@ public class SubActivity extends AppCompatActivity implements View.OnClickListen
         btnSet.setOnClickListener(this);
         Button btnCancel = (Button)findViewById(R.id.cancel);
         btnCancel.setOnClickListener(this);
+        /*
+        Button btnVibON = (Button)findViewById(R.id.vibon);
+        btnVibON.setOnClickListener(this);
+
+        Button btnVibOFF = (Button)findViewById(R.id.viboff);
+        btnVibOFF.setOnClickListener(this);
+        */
+
         TimePicker tPicker = (TimePicker)findViewById(R.id.timePicker);
         tPicker.setIs24HourView(true);
+
+
     }
 
     @Override
@@ -83,15 +92,17 @@ public class SubActivity extends AppCompatActivity implements View.OnClickListen
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onClick(View v) {
+
         TimePicker tPicker = (TimePicker)findViewById(R.id.timePicker);
         tPicker.setIs24HourView(true);
 
-        EditText edText = (EditText) findViewById(R.id.editText);
+        EditText edText = (EditText) findViewById(R.id.edText);
+
         //AlarmReceiverを呼び出すインテント
         Intent bootIntent = new Intent(SubActivity.this,AlarmReceiver.class);
         //追加データとして、Notificationの識別子を渡す
         bootIntent.putExtra("notificationId",notificationId);
-        //bootIntent.putExtra("notificationId",id);
+
         //追加データとして、やることを渡す
         bootIntent.putExtra("todo",edText.getText());
 
@@ -104,6 +115,7 @@ PendingIntentを使うと指定したタイミングでインテントを発行�
         AlarmManager alarm3 = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
         switch (v.getId()) {
+
             case R.id.set:
                 //assert tPicker != null;
                 int hour = tPicker.getHour();
@@ -118,9 +130,9 @@ PendingIntentを使うと指定したタイミングでインテントを発行�
                 switch (id) {
                     case 1:
                         alarm.setExact(
-                            AlarmManager.RTC_WAKEUP,
-                            alarmStartTIme,
-                            alarmIntent
+                                AlarmManager.RTC_WAKEUP,
+                                alarmStartTIme,
+                                alarmIntent
 
                         );
                     case 2:
@@ -145,6 +157,8 @@ PendingIntentを使うと指定したタイミングでインテントを発行�
                 alarm.cancel(alarmIntent);
                 Toast.makeText(SubActivity.this, "通知をキャンセル！", Toast.LENGTH_SHORT).show();
                 break;
+
+
+            }
         }
-    }
 }

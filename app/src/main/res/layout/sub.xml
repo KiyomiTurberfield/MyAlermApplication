@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#fff4e1"
     android:id="@+id/sublayout"
     tools:context=".SubActivity">
 
@@ -21,7 +22,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/edText"
         android:layout_below="@+id/text_view"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -30,6 +31,9 @@
         android:layout_alignRight="@+id/timePicker" />
 
     <TimePicker
+
+        android:textColor="#364f6b"
+        android:background="#ffa5a5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timePicker"
@@ -41,16 +45,21 @@
 
     <Button
         style ="?android:attr/buttonStyleSmall"
+        android:textColor="#364f6b"
+        android:background="#ffa5a5"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/set"
     android:id="@+id/set"
-    android:layout_alignParentBottom="true"
-     />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <Button
         style ="?android:attr/buttonStyleSmall"
+        android:textColor="#364f6b"
+        android:background="#ffa5a5"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/cancel"

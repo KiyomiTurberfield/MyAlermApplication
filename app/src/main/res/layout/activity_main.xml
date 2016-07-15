@@ -1,43 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    tools:context="com.example.michelle.myalermapplication.MainActivity"
+    android:background="#fff4e1">
 
-    tools:context="com.example.michelle.myalermapplication.MainActivity">
 
-
+    <!--
     <TextView
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+-->
+    <ImageView
+        android:id="@+id/cute_sunshine"
+        android:layout_width="109dp"
+        android:layout_height="109dp"
+        android:src="@drawable/cute_sunshine"
+        android:contentDescription="太陽"
+        android:gravity = "bottom"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="バイブOFF"
+        android:id="@+id/viboff"
+        android:layout_gravity="right"
+        android:textColor="#364f6b"
+        android:background="#3fc1c4"
+        android:layout_alignTop="@+id/vibon"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="バイブON"
+        android:id="@+id/vibon"
+        android:textColor="#364f6b"
+        android:background="#ffa5a5"
+        android:layout_alignTop="@+id/chicken"
+        android:layout_toLeftOf="@+id/viboff"
+        android:layout_toStartOf="@+id/viboff" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:textSize="20sp"
-        android:text="アラーム１" />
+        android:text="アラーム１"
+        android:textColor="#364f6b"
+        android:background="#ffa5a5"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/chicken"
+        android:layout_alignEnd="@+id/chicken" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:textSize="20sp"
-        android:text="アラーム２" />
+        android:text="アラーム２"
+        android:textColor="#364f6b"
+        android:background="#ff858a"
+        android:layout_below="@+id/button1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:textSize="20sp"
-        android:text="アラーム３" />
+        android:text="アラーム３"
+        android:textColor="#364f6b"
+        android:background="#ffa5a5"
+        android:layout_below="@+id/button2"
+        android:layout_alignRight="@+id/chicken"
+        android:layout_alignEnd="@+id/chicken" />
 
+    <ImageView
+        android:id="@+id/chicken"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        android:src="@drawable/chicken"
+        android:contentDescription="鶏"
+        android:gravity = "bottom"
 
-</LinearLayout>
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="目覚ましアプリ"
+        android:textColor="#364f6b"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp" />
+
+    <!-- android:scaleType="fitStart" -->
+    <!-- android:layout_width="wrap_content" -->
+
+</RelativeLayout>
