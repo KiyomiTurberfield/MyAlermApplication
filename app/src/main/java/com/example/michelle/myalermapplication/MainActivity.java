@@ -15,13 +15,15 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.TextView;
 import java.util.Calendar;
 import android.app.Activity;
 
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int bid1 = 1;
     private static final int bid2 = 2;
@@ -29,54 +31,28 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button1, button2, button3;
     private TextView textView;
-    private int year, month, date, hour, minute, second, msecond;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageView v  = (ImageView) findViewById(R.id.chicken);
+        ImageView v2  = (ImageView) findViewById(R.id.cute_sunshine);
 
-        /*
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Button btnVibON = (Button)findViewById(R.id.vibon);
+        btnVibON.setOnClickListener(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        Button btnVibOFF = (Button)findViewById(R.id.viboff);
+        btnVibOFF.setOnClickListener(this);
+
+
         // 10秒で繰り返しアラーム
         button1 = (Button)this.findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(System.currentTimeMillis());
-                // 5秒後に設定
-                calendar.add(Calendar.SECOND, 5);
-
-                Intent intent = new Intent(getApplicationContext(), AlarmBroadcastReceiver.class);
-                intent.putExtra("intentId", 1);
-
-                // PendingIntentが同じ物の場合は上書きされてしまうので requestCode で区別する
-                PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), bid1, intent, 0);
-
-                // アラームをセットする
-                AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(ALARM_SERVICE);
-                // 10秒で 繰り返し。スヌーズ設定するとき利用。消しちゃうとならない
-                am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 10000, pending);
-
-                // トーストで設定されたことをを表示
-                Toast.makeText(getApplicationContext(), "ALARM 1", Toast.LENGTH_SHORT).show();
-
-                // 無理やりですが、アプリを一旦終了します。この方法はバックグラウンドに移行させるための方便で推奨ではありません
-                close();
-                */
 
                 // インテントの生成
                 Intent intent = new Intent();
@@ -86,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 // SubActivity の起動
                 startActivity(intent);
 
-
-                //PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), bid1, intent, 0);
 
             }
         });
@@ -96,19 +70,17 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getApplicationContext(), AlarmBroadcastReceiver.class);
+
                 Intent intent = new Intent();
                 // インテントの生成
-                //Intent intent2 = new Intent();
+
                 intent.setClassName("com.example.michelle.myalermapplication","com.example.michelle.myalermapplication.SubActivity");
 
                 intent.putExtra("intentId", 2);
 
                 // SubActivity の起動
                 startActivity(intent);
-                //int intentId = 2;
 
-                //PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), bid2, intent, 0);
             }
         });
 
@@ -118,14 +90,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // インテントの生成
-                //Intent intent3 = new Intent();
-                //intent3.setClassName("com.example.michelle.myalermapplication","com.example.michelle.myalermapplication.SubActivity");
+                Intent intent = new Intent();
+                intent.setClassName("com.example.michelle.myalermapplication","com.example.michelle.myalermapplication.SubActivity");
+
+                intent.putExtra("intentId", 3);
 
                 // SubActivity の起動
-                //startActivity(intent3);
-
-                //intent3.putExtra("intentId", 3);
-                //PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), bid3, intent3, 0);
+                startActivity(intent);
             }
         });
 
@@ -166,5 +137,30 @@ public class MainActivity extends AppCompatActivity {
         calendar.add(Calendar.SECOND, 10);
 
         return calendar;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.vibon:
+                System.out.println("バイブON");
+                // 共有するデータを設定
+                Alarm alarmvib = Alarm.getInstance();
+                alarmvib.setVib(true);
+                System.out.println("バイブON押した" + alarmvib.getVib());
+
+                Toast.makeText(MainActivity.this, "バイブレーションオン", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.viboff:
+                System.out.println("バイブOFF");
+                // 共有するデータを設定
+                alarmvib = Alarm.getInstance();
+                alarmvib.setVib(false);
+                System.out.println("バイブOFF押した" + alarmvib.getVib());
+
+                Toast.makeText(MainActivity.this, "バイブレーションオフ", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
